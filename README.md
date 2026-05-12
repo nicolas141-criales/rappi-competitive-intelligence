@@ -90,6 +90,27 @@ app/
 | **Containerización** | Docker Compose | Reproducibilidad del entorno para el equipo evaluador |
 | **Cache** | `@st.cache_data` + archivo local | Cache-first: el dashboard opera con datos locales incluso sin acceso a red |
 
+## Infraestructura y Servicios Externos
+
+La plataforma opera principalmente mediante automatización browser-based utilizando Playwright.
+
+ScraperAPI fue integrado como una capa ligera de resiliencia y fallback para escenarios como:
+
+* bloqueos temporales
+* recuperación ante rate limiting
+* degradación del scraping principal
+
+Actualmente el proyecto utiliza los créditos gratuitos proporcionados por ScraperAPI, ya que el sistema fue diseñado con un enfoque pragmático y de bajo consumo mediante:
+
+* estrategia cache-first
+* sampling representativo
+* retry logic
+* graceful degradation
+* soporte de mock mode
+
+ScraperAPI únicamente se activa en caso de fallos o degradación del scraping principal, minimizando costos y dependencia de infraestructura externa.
+
+
 ---
 
 ## Estrategia de Scraping y Resiliencia
