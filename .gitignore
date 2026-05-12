@@ -1,0 +1,12 @@
+venv/
+.env
+__pycache__/
+*.pyc
+
+logs/
+
+app/data/cache/
+app/data/screenshots/
+app/data/processed/
+
+.streamlit/secrets.toml

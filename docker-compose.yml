@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  scraper:
+    build: .
+    container_name: rappi_ci_scraper
+    env_file: .env
+    volumes:
+      - ./app/data:/app/app/data
+      - ./logs:/app/logs
+    command: python app/main.py --mock
+    profiles: ["scraper"]
+
+  dashboard:
+    build: .
+    container_name: rappi_ci_dashboard
+    env_file: .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app/data:/app/app/data
+    command: streamlit run app/dashboard/dashboard.py --server.port=8501 --server.address=0.0.0.0
+    depends_on: []
+    profiles: ["dashboard"]
+
+  full:
+    build: .
+    container_name: rappi_ci_full
+    env_file: .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app/data:/app/app/data
+      - ./logs:/app/logs
+    command: >
+      sh -c "python app/main.py --mock &&
+             streamlit run app/dashboard/dashboard.py --server.port=8501 --server.address=0.0.0.0"

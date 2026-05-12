@@ -1,0 +1,13 @@
+{
+  "competitiveness_index": 32.0,
+  "delivery_performance_score": 26.0,
+  "promo_aggressiveness_score": 63.0,
+  "market_pressure_score": 81.0,
+  "strategic_risk_score": 68.8,
+  "zone_opportunity": {
+    "premium": 0.0,
+    "media": 29.3,
+    "corporativa": 0.0,
+    "periferia": 0.0
+  }
+}
